@@ -57,99 +57,15 @@ if( isset($_POST['survey_info']) ){
 </head>
 <body>
 
-	<h1>Welcome to Dashboard</h1>
-	<!-- <h4>Name: <?php // echo $user_info['name']; ?></h4> -->
 	<h4>Name: <?php echo $user_info->name; ?></h4>
-	<h4>Email: <?php echo $user_info->userEmail; ?> <a href="logout.php">Logout</a></h4>
+	<h4>Email: <?php echo $user_info->userEmail; ?></h4>
+	<a href="add_question.php">Add Question</a><br />
+	<a href="add_options.php">Add Options</a><br />
+	<a href="index.php">View Exam</a><br />
+	<a href="logout.php">Logout</a><br />
 	
 
-	<form action="" method="post">
-		<table>
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="one" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="one" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="one" value="3"> Other</td>
-				<td> <input type="radio" name="one" value="4"> Other</td>
-				<td> <input type="radio" name="one" value="5"> Other</td>
-				<td> <input type="radio" name="one" value="6"> Other</td>
-				<td> <input type="radio" name="one" value="7"> Other</td>
-			</tr>			
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="two" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="two" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="two" value="3"> Other</td>
-				<td> <input type="radio" name="two" value="4"> Other</td>
-				<td> <input type="radio" name="two" value="5"> Other</td>
-				<td> <input type="radio" name="two" value="6"> Other</td>
-				<td> <input type="radio" name="two" value="7"> Other</td>
-			</tr>
-
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="three" value="1" checked>Strongly disagree</td>
-				<td><input type="radio" name="three" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="three" value="3"> Other</td>
-				<td> <input type="radio" name="three" value="4"> Other</td>
-				<td> <input type="radio" name="three" value="5"> Other</td>
-				<td> <input type="radio" name="three" value="6"> Other</td>
-				<td> <input type="radio" name="three" value="7"> Other</td>
-			</tr>			
-
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="four" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="four" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="four" value="3"> Other</td>
-				<td> <input type="radio" name="four" value="4"> Other</td>
-				<td> <input type="radio" name="four" value="5"> Other</td>
-				<td> <input type="radio" name="four" value="6"> Other</td>
-				<td> <input type="radio" name="four" value="7"> Other</td>
-				
-			</tr>
-
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="five" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="five" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="five" value="3"> Other</td>
-				<td> <input type="radio" name="five" value="4"> Other</td>
-				<td> <input type="radio" name="five" value="5"> Other</td>
-				<td> <input type="radio" name="five" value="6"> Other</td>
-				<td> <input type="radio" name="five" value="7"> Other</td>
-			</tr>
-
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="six" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="six" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="six" value="3"> Other</td>
-				<td> <input type="radio" name="six" value="4"> Other</td>
-				<td> <input type="radio" name="six" value="5"> Other</td>
-				<td> <input type="radio" name="six" value="6"> Other</td>
-				<td> <input type="radio" name="six" value="7"> Other</td>
-				
-			</tr>
-
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="seven" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="seven" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="seven" value="3"> Other</td>
-				<td> <input type="radio" name="seven" value="4"> Other</td>
-				<td> <input type="radio" name="seven" value="5"> Other</td>
-				<td> <input type="radio" name="seven" value="6"> Other</td>
-				<td> <input type="radio" name="seven" value="7"> Other</td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Submit" name="survey_info"></td>
-			</tr>
-		</table>			
-	</form>
 	
 </body>
 </html>

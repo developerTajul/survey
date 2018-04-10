@@ -19,35 +19,47 @@ $user_info = $results->fetch_object();
 
 
 /**
-* add question
+*
+* edit question view
 *
 */
 
-$error = array();
+if( isset($_GET['id']) ){
+	$idd = $_GET['id'];
 
-if( isset($_POST['add_question_info']) ){
-	$question = $_POST['newQuestion'];
-
-	if( empty($question) ){
-		$error['no_question'] = "Question Field must not be blank";
-	}
-
-	$error_num = count($error);
+	$select_query = "SELECT * FROM questions WHERE id=$idd";
 
 
-	$add_ques = "INSERT INTO questions(title) VALUES('$question')";
+	$q_result = $con->query($select_query);
 
-	if($error_num === 0){
-		$question_add = $con->query($add_ques);
-
-		if( $question_add ){
-			$success = "You are successful";
-		}
-	}
+	$results = $q_result->fetch_object();
 
 
 
 }
+
+
+
+/**
+*
+* update question
+*/
+if( isset( $_POST['update_question'] ) ){
+	$title = $_POST['newQuestion'];
+
+var_dump($title);
+	$q = "UPDATE questions SET title = '$title' WHERE id = $idd";
+
+	$con->query($q);
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -62,40 +74,29 @@ if( isset($_POST['add_question_info']) ){
 <body>
 
 	<h1>Welcome to Dashboard</h1>
-	<h2>Add Question Section</h2>
 	<!-- <h4>Name: <?php // echo $user_info['name']; ?></h4> -->
 	<h4>Name: <?php echo $user_info->name; ?></h4>
 	<h4>Email: <?php echo $user_info->userEmail; ?></h4>
+	<a href="add_question.php">Add Question</a><br />
 	<a href="view_questions.php">View Question</a><br />
-	<a href="add_options.php">Add Options</a><br />
-	<a href="view_options.php">View Options</a><br />
-
 	<a href="logout.php">Logout</a><br />
 	
 
 	<form action="" method="post">
+
 		<table>		
 			<tr>
 				<td><label for="newQuestion">Add Question</label></td>
-				<td><input type="text" name="newQuestion" id="newQuestion"></td>
-				<td><?php if( isset($error['no_question']) ){ echo $error['no_question']; } ?></td>
-				
+				<td><input type="text" name="newQuestion" value="<?php echo $results->title; ?>" id="newQuestion"></td>
 			</tr>
-
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Submit" name="add_question_info"></td>
+				<td><input type="submit" value="Update" name="update_question"></td>
 			</tr>
 		</table>			
 	</form>
 
-	<?php 
 
-		if( isset($success) ){
-			echo $success;
-		}
-
-	?>
 	
 </body>
 </html>
