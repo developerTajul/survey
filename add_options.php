@@ -18,6 +18,42 @@ $results = $con->query($q);
 $user_info = $results->fetch_object();
 
 
+/**
+* insert options
+*
+*/
+$error = array();
+
+if( isset( $_POST['options_info']) ){
+	$label = $_POST['optionsLabel'];
+	$value = $_POST['optionsValue'];
+
+	echo $label." ".$value;
+
+	if( empty($label)){
+		$error['label'] = "Label Field must not blank";
+	}
+
+	if( empty($value)){
+		$error['value'] = "Label Field must not blank";
+	}
+
+	$error_num = count( $error );
+
+	$insert_value = "INSERT INTO options (title, value) VALUES('$label', '$value')";
+
+	if( $error_num === 0){
+		$insert_value_q = $con->query($insert_value);
+
+		if( $insert_value_q ){
+			$success = "Value added successfully";
+		}else{
+			$fail = "Sorry, Try again";
+		}
+	}
+
+}
+
 
 
 
@@ -48,17 +84,28 @@ $user_info = $results->fetch_object();
 		<table>
 
 			<tr>
-				<td><label for="optionsChoice">Add Options</label></td>
-				<td><input type="text" name="optionsChoice" id="optionsChoice"></td>
+				<td><label for="optionsLabel">Title</label></td>
+				<td><input type="text" name="optionsLabel" id="optionsLabel"></td>
+				<td><?php if( isset($error['label']) ){ echo $error['label']; } ?></td>
+			</tr>		
 
+			<tr>
+				<td><label for="optionsValue">Value</label></td>
+				<td><input type="number" name="optionsValue" id="optionsValue"></td>
+				<td><?php if( isset($error['value']) ){ echo $error['value']; } ?></td>
 			</tr>
 
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Submit" name="survey_info"></td>
+				<td><input type="submit" value="Submit" name="options_info"></td>
 			</tr>
 		</table>			
 	</form>
+	<?php 
+	if( isset($success) ){
+		echo $success;
+	}
+	?>
 	
 </body>
 </html>
