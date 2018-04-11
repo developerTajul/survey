@@ -59,19 +59,17 @@ $x = 0;
 
 
 if( isset($_POST['survey_info']) ){
-
-
 	
+		json_encode($_POST);
 
 
-	$one_1 = isset($_POST['one_1']) ? $_POST['one_1'] : '';
-	$one_2 = $_POST['one_2'];
-	$one_3 = $_POST['one_3'];
-	$one_4 = $_POST['one_4'];
-	$one_5 = $_POST['one_5'];
-	$one_6 = $_POST['one_6'];
-	$one_7 = $_POST['one_7'];
-	
+		$total = 0;
+		foreach ($_POST as $value) {
+			
+			$total+=(INT)$value;
+		}
+		
+
 
 	// $one = $_POST['one'];
 	// $two = $_POST['two'];
@@ -82,9 +80,9 @@ if( isset($_POST['survey_info']) ){
 	// $seven = $_POST['seven'];
 
 	// $total= ($one+ $two + $three + $four + $five + $six + $seven);
-	$total= ($one_1+ $one_2 + $one_3 + $one_4 + $one_5 + $one_6 + $one_7);
+	//$total= ($one_1+ $one_2 + $one_3 + $one_4 + $one_5 + $one_6 + $one_7);
 
-	echo "<h1>".$total."</h1>";
+	//echo "<h1>".$total."</h1>";
 
 	
 	if( $total <= 29){
@@ -163,7 +161,7 @@ foreach ($all_questions as  $value) {
 
 
 
-
+<!--
 	<form action="" method="post">
 		<table>
 			<tr>
@@ -250,7 +248,7 @@ foreach ($all_questions as  $value) {
 				<td><input type="submit" value="Submit" name="survey_info"></td>
 			</tr>
 		</table>			
-	</form>  
+	</form> --> 
 	
 </body>
 </html>
