@@ -8,7 +8,10 @@ if( !user_logged_in() ){
 	header("Location: login.php");
 }
 
-
+/**
+*
+* all users
+*/
 $user = $_SESSION['username'];
 
 $q = "SELECT * FROM student_info WHERE userName = '$user' ";
@@ -18,34 +21,6 @@ $results = $con->query($q);
 $user_info = $results->fetch_object();
 
 
-
-
-if( isset($_POST['survey_info']) ){
-	$one = $_POST['one'];
-	$two = $_POST['two'];
-	$three = $_POST['three'];
-	$four = $_POST['four'];
-	$five = $_POST['five'];
-	$six = $_POST['six'];
-	$seven = $_POST['seven'];
-
-	$total= ($one+ $two + $three + $four + $five + $six + $seven);
-
-	echo "<h1>".$total."</h1>";
-
-	
-	if( $total <= 29){
-		echo "00 – 29 	Get help immediately.  $total";
-		mail("");
-	}elseif( $total == 30 OR $total <= 39 ){
-		echo "30 – 39 	Get help immediately.  $total";
-	}elseif( $total == 40 OR $total <= 45 ){
-		echo "40 – 45 	You have a number of strengths and are doing many things right.".$total;
-	}elseif( $total == 46 OR $total <= 56 ){
-		echo "46 – 56 	Congratulations – you are on track. ".$total;
-	}
-
-}
 
 
 /**
@@ -59,22 +34,83 @@ $view_query = $con->query($select_all_questions);
 $all_questions= $view_query->fetch_all(MYSQLI_ASSOC);
 
 echo "<pre>";
-// print_r($all_questions);
+	// print_r($all_questions);
 echo "</pre>";
+$question_num = count($all_questions);
 
-$total_questions = count($all_questions);
+echo $question_num;
+
+/**
+*
+* show options
+*
+*/
+$select_all_options = "SELECT * FROM options";
+$options_query = $con->query($select_all_options);
+
+$all_options= $options_query->fetch_all(MYSQLI_ASSOC);
+echo "<pre>";
+	// print_r($all_options);
+echo "</pre>";
 
 $x = 0;
 
-while($x <= $total_questions) {
-    
-	foreach ($all_questions as  $value) {
-		echo $value['id']." ".$value['title']."<br />";	
-	}
-	echo "<hr />";
-    $x++;
 
-} 
+
+
+if( isset($_POST['survey_info']) ){
+
+
+	
+
+
+	$one_1 = isset($_POST['one_1']) ? $_POST['one_1'] : '';
+	$one_2 = $_POST['one_2'];
+	$one_3 = $_POST['one_3'];
+	$one_4 = $_POST['one_4'];
+	$one_5 = $_POST['one_5'];
+	$one_6 = $_POST['one_6'];
+	$one_7 = $_POST['one_7'];
+	
+
+	// $one = $_POST['one'];
+	// $two = $_POST['two'];
+	// $three = $_POST['three'];
+	// $four = $_POST['four'];
+	// $five = $_POST['five'];
+	// $six = $_POST['six'];
+	// $seven = $_POST['seven'];
+
+	// $total= ($one+ $two + $three + $four + $five + $six + $seven);
+	$total= ($one_1+ $one_2 + $one_3 + $one_4 + $one_5 + $one_6 + $one_7);
+
+	echo "<h1>".$total."</h1>";
+
+	
+	if( $total <= 29){
+		echo "00 – 29 	Get help immediately.  $total";
+		
+	}elseif( $total == 30 OR $total <= 39 ){
+		echo "30 – 39 	Get help immediately.  $total";
+	}elseif( $total == 40 OR $total <= 45 ){
+		echo "40 – 45 	You have a number of strengths and are doing many things right.".$total;
+	}elseif( $total == 46 OR $total <= 56 ){
+		echo "46 – 56 	Congratulations – you are on track. ".$total;
+	}
+
+}
+
+
+/**
+foreach ($all_questions as  $value) {
+	echo $x++." ".$value['title']."<br />";
+	foreach ($all_options as $key => $value) {
+		echo $value['title']."<br />";
+	}
+}
+
+**/
+
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +127,42 @@ while($x <= $total_questions) {
 	<a href="login.php">Login</a>
 	<a href="logout.php">Logout</a>
 	
+
+	<form action="" method="post">
+		<table>
+			<!-- 
+				main foreach loop
+				for showing Questions
+			 -->
+			<?php
+			$a = 0;
+			 foreach ($all_questions as  $value) { 
+			 	$a++;
+			 	?>
+
+			<tr>
+				<td><label for="sUsername"><?php echo $x++." ) ".$value['title']; ?></label></td>
+
+				<!-- nested loop for options -->
+				<?php foreach ($all_options as $value) { ?>
+
+				<td><input type="radio" name="one_<?php echo $a; ?>" value="<?php echo $value['value']; ?>"><?php echo $value['title']; ?></td>
+
+				<?php } ?> <!-- nested loop ends here -->
+			</tr>	
+
+			<?php } ?> <!-- main foreach loop ends -->
+			
+
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Submit" name="survey_info"></td>
+			</tr>
+		</table>			
+	</form>
+
+
+
 
 	<form action="" method="post">
 		<table>
@@ -178,7 +250,7 @@ while($x <= $total_questions) {
 				<td><input type="submit" value="Submit" name="survey_info"></td>
 			</tr>
 		</table>			
-	</form>
+	</form>  
 	
 </body>
 </html>
