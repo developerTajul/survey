@@ -36,9 +36,8 @@ $all_questions= $view_query->fetch_all(MYSQLI_ASSOC);
 echo "<pre>";
 	// print_r($all_questions);
 echo "</pre>";
-$question_num = count($all_questions);
 
-echo $question_num;
+
 
 /**
 *
@@ -94,20 +93,14 @@ if( isset($_POST['survey_info']) ){
 		echo "40 – 45 	You have a number of strengths and are doing many things right.".$total;
 	}elseif( $total == 46 OR $total <= 56 ){
 		echo "46 – 56 	Congratulations – you are on track. ".$total;
+	}else{
+		echo $total;
 	}
 
 }
 
 
-/**
-foreach ($all_questions as  $value) {
-	echo $x++." ".$value['title']."<br />";
-	foreach ($all_options as $key => $value) {
-		echo $value['title']."<br />";
-	}
-}
 
-**/
 
 ?>
 

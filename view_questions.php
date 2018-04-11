@@ -64,7 +64,7 @@ if( isset($_GET['delete']) ){
 	<h4>Name: <?php echo $user_info->name; ?></h4>
 	<h4>Email: <?php echo $user_info->userEmail; ?></h4>
 	<a href="add_question.php">Add Question</a><br />
-	<a href="view_questions.php">View Question</a><br />
+	<a href="add_options.php">Add Options</a><br />
 	<a href="logout.php">Logout</a><br />
 	
 
