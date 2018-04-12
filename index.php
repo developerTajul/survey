@@ -20,6 +20,8 @@ $results = $con->query($q);
 
 $user_info = $results->fetch_object();
 
+$user_id = $user_info->userID;
+
 
 
 
@@ -52,14 +54,14 @@ echo "<pre>";
 	// print_r($all_options);
 echo "</pre>";
 
-$x = 0;
+$x = 1;
 
 
 
 
 if( isset($_POST['survey_info']) ){
 	
-		json_encode($_POST);
+		$ans_options = json_encode($_POST);
 
 
 		$total = 0;
@@ -67,6 +69,12 @@ if( isset($_POST['survey_info']) ){
 			
 			$total+=(INT)$value;
 		}
+
+		 $q = "Insert INTO results ( user_id, ans, total) VALUES ('$user_id', '$ans_options', '$total') ";
+
+		 $success_ins = $con->query($q);
+
+
 		
 
 
@@ -85,17 +93,17 @@ if( isset($_POST['survey_info']) ){
 
 	
 	if( $total <= 29){
-		echo "00 – 29 	Get help immediately.  $total";
+		$message = "00 – 29 	Get help immediately.  $total";
 		
 	}elseif( $total == 30 OR $total <= 39 ){
-		echo "30 – 39 	Get help immediately.  $total";
+		$message = "30 – 39 	Get help immediately.  $total";
 	}elseif( $total == 40 OR $total <= 45 ){
-		echo "40 – 45 	You have a number of strengths and are doing many things right.".$total;
+		$message = "40 – 45 	You have a number of strengths and are doing many things right.".$total;
 	}elseif( $total == 46 OR $total <= 56 ){
-		echo "46 – 56 	Congratulations – you are on track. ".$total;
-	}else{
-		echo $total;
+		$message = "46 – 56 	Congratulations – you are on track. ".$total;
 	}
+
+
 
 }
 
@@ -151,6 +159,11 @@ if( isset($_POST['survey_info']) ){
 			</tr>
 		</table>			
 	</form>
+
+
+	<?php if( isset($message) ){
+		echo $message;
+	} ?>
 
 
 
