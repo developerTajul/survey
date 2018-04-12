@@ -2,6 +2,17 @@
 session_start();
 
 
+/**
+* PHP Mailer
+**/
+
+
+
+
+
+/** end PHP Mailer **/
+
+
 require_once('inc/functions.php');
 
 if( !user_logged_in() ){
@@ -11,6 +22,7 @@ if( !user_logged_in() ){
 /**
 *
 * all users
+*
 */
 $user = $_SESSION['username'];
 

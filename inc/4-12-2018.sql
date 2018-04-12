@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2018 at 02:51 PM
+-- Generation Time: Apr 12, 2018 at 06:58 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -39,13 +39,13 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`id`, `title`, `value`) VALUES
-(1, '', 2),
-(2, '', 5),
-(3, '', 7),
-(4, '', 3),
-(5, '', 6),
-(6, 'What is your opinion', 2),
-(7, 'What is the ciptal of Barisal?', 7);
+(1, 'Strongly disagree ', 1),
+(2, 'Disagree somewhat', 2),
+(3, 'Disagree a little', 3),
+(4, 'Neutral', 4),
+(5, 'Agree somewhat', 5),
+(6, 'Agree', 6),
+(7, 'Strongly agree', 7);
 
 -- --------------------------------------------------------
 
@@ -63,10 +63,13 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `title`) VALUES
-(18, 'Bangladesh is one of the most ?'),
-(19, 'Where are you from ?'),
-(20, 'Do you love criket?'),
-(21, 'What color do you like?');
+(22, 'I have a good idea about what I want to do for a career. '),
+(23, 'I have a clear sense of my strengths and interests, or how they could relate to a career path.'),
+(24, 'I have the skills and experience to pursue my dream career and I am working on it.'),
+(25, 'I feel motivated by my current job and look forward to going to work every day.'),
+(26, 'I am happy with my current career or line of work'),
+(27, 'If I lost my job today, I would prefer to look for another job in the same industry'),
+(28, 'I am respected and recognized by others for my knowledge and expertise.');
 
 -- --------------------------------------------------------
 
@@ -75,11 +78,21 @@ INSERT INTO `questions` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `results` (
-  `resultId` int(11) NOT NULL,
-  `userID` int(11) DEFAULT NULL,
-  `activity` varchar(200) DEFAULT NULL,
-  `result` int(11) DEFAULT NULL
+  `result_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `ans` text,
+  `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `results`
+--
+
+INSERT INTO `results` (`result_id`, `user_id`, `ans`, `total`) VALUES
+(2, 1, '{\"one_1\":\"7\",\"one_2\":\"7\",\"one_3\":\"3\",\"one_4\":\"5\",\"one_5\":\"5\",\"one_6\":\"6\",\"one_7\":\"7\",\"survey_info\":\"Submit\"}', 40),
+(3, 1, '{\"one_1\":\"1\",\"one_2\":\"1\",\"one_3\":\"1\",\"one_4\":\"1\",\"one_5\":\"1\",\"one_6\":\"1\",\"one_7\":\"1\",\"survey_info\":\"Submit\"}', 7),
+(4, 1, '{\"survey_info\":\"Submit\"}', 0),
+(5, 1, '{\"one_1\":\"5\",\"one_2\":\"2\",\"one_3\":\"7\",\"one_5\":\"5\",\"one_6\":\"7\",\"one_7\":\"7\",\"survey_info\":\"Submit\"}', 33);
 
 -- --------------------------------------------------------
 
@@ -143,7 +156,7 @@ ALTER TABLE `questions`
 -- Indexes for table `results`
 --
 ALTER TABLE `results`
-  ADD PRIMARY KEY (`resultId`);
+  ADD PRIMARY KEY (`result_id`);
 
 --
 -- Indexes for table `student_info`
@@ -171,13 +184,13 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `resultId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `userrespons`
