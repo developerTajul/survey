@@ -117,6 +117,30 @@ if( isset($_POST['survey_info']) ){
 
 
 
+	$select_ans = "SELECT * FROM results WHERE user_id=1 ORDER BY result_id DESC LIMIT 1";
+
+	$all_ans = $con->query($select_ans);
+	$info = $all_ans->fetch_object();
+
+
+
+	// $info=json_decode($info->ans);
+	// $info = json_decode($info['ans']);
+	echo "<pre>";
+	print_r($info);
+	echo "</pre>";
+
+	$sum = 0;
+	foreach ($info as $value) {
+		$sum+=(int)$value;
+
+		
+	}
+
+	echo $sum;
+
+
+
 }
 
 
@@ -178,95 +202,44 @@ if( isset($_POST['survey_info']) ){
 	} ?>
 
 
+	<?php 
 
-<!--
-	<form action="" method="post">
-		<table>
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="one" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="one" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="one" value="3"> Other</td>
-				<td> <input type="radio" name="one" value="4"> Other</td>
-				<td> <input type="radio" name="one" value="5"> Other</td>
-				<td> <input type="radio" name="one" value="6"> Other</td>
-				<td> <input type="radio" name="one" value="7"> Other</td>
-			</tr>			
+	// $select_ans = "SELECT * FROM results WHERE user_id=1 ORDER BY result_id DESC LIMIT 1";
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="two" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="two" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="two" value="3"> Other</td>
-				<td> <input type="radio" name="two" value="4"> Other</td>
-				<td> <input type="radio" name="two" value="5"> Other</td>
-				<td> <input type="radio" name="two" value="6"> Other</td>
-				<td> <input type="radio" name="two" value="7"> Other</td>
-			</tr>
+	// $all_ans = $con->query($select_ans);
+	// $info = $all_ans->fetch_assoc();
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="three" value="1" checked>Strongly disagree</td>
-				<td><input type="radio" name="three" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="three" value="3"> Other</td>
-				<td> <input type="radio" name="three" value="4"> Other</td>
-				<td> <input type="radio" name="three" value="5"> Other</td>
-				<td> <input type="radio" name="three" value="6"> Other</td>
-				<td> <input type="radio" name="three" value="7"> Other</td>
-			</tr>			
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="four" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="four" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="four" value="3"> Other</td>
-				<td> <input type="radio" name="four" value="4"> Other</td>
-				<td> <input type="radio" name="four" value="5"> Other</td>
-				<td> <input type="radio" name="four" value="6"> Other</td>
-				<td> <input type="radio" name="four" value="7"> Other</td>
-				
-			</tr>
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="five" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="five" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="five" value="3"> Other</td>
-				<td> <input type="radio" name="five" value="4"> Other</td>
-				<td> <input type="radio" name="five" value="5"> Other</td>
-				<td> <input type="radio" name="five" value="6"> Other</td>
-				<td> <input type="radio" name="five" value="7"> Other</td>
-			</tr>
+	// // $info=json_decode($info->ans);
+	// $info = json_decode($info['ans']);
+	// echo "<pre>";
+	// print_r($info);
+	// echo "</pre>";
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="six" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="six" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="six" value="3"> Other</td>
-				<td> <input type="radio" name="six" value="4"> Other</td>
-				<td> <input type="radio" name="six" value="5"> Other</td>
-				<td> <input type="radio" name="six" value="6"> Other</td>
-				<td> <input type="radio" name="six" value="7"> Other</td>
-				
-			</tr>
+	// $sum = 0;
+	// foreach ($info as $value) {
+	// 	$sum+=(int)$value;
 
-			<tr>
-				<td><label for="sUsername">1.	I have a good idea about what I want to do for a career. </label></td>
-				<td><input type="radio" name="seven" value="1" checked> Strongly disagree </td>
-				<td><input type="radio" name="seven" value="2"> Disagree somewhat</td>
-				<td> <input type="radio" name="seven" value="3"> Other</td>
-				<td> <input type="radio" name="seven" value="4"> Other</td>
-				<td> <input type="radio" name="seven" value="5"> Other</td>
-				<td> <input type="radio" name="seven" value="6"> Other</td>
-				<td> <input type="radio" name="seven" value="7"> Other</td>
-			</tr>
+		
+	// }
 
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Submit" name="survey_info"></td>
-			</tr>
-		</table>			
-	</form> --> 
+	// echo $sum;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	?>
 	
 </body>
 </html>
